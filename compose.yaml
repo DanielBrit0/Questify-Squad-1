@@ -1,0 +1,29 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: questify
+      POSTGRES_USER: questify
+      POSTGRES_PASSWORD: questify_local
+    ports:
+      - "5432:5432"
+    volumes:
+      - questify_postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U questify -d questify"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgresql://questify:questify_local@postgres:5432/questify
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+volumes:
+  questify_postgres_data:

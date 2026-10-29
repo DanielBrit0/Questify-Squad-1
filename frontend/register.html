@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questify - Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="auth-container"><section class="auth-card">
+        <h1>Questify</h1>
+        <p class="subtitle">Crie sua conta</p>
+        <form id="registerForm">
+            <div class="input-group"><label for="name">Nome</label><input type="text" id="name" required></div>
+            <div class="input-group"><label for="email">E-mail</label><input type="email" id="email" required></div>
+            <div class="input-group"><label for="password">Senha</label><input type="password" id="password" required></div>
+            <div id="message" class="message hidden"></div>
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p class="footer-link">Já tem uma conta? <a href="index.html">Entrar</a></p>
+    </section></main>
+    <script src="app.js"></script>
+</body>
+</html>
